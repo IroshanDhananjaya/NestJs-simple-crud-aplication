@@ -1,4 +1,4 @@
-import { Get, HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Profile } from 'src/typeorm/entities/profile';
 import { User } from 'src/typeorm/entities/user';
@@ -18,7 +18,7 @@ export class UserService {
   ) {}
 
   finfUsers() {
-    return this.userRepository.find();
+    return this.userRepository.find({ relations: ['profile'] });
   }
 
   createUser(userDetails: CreateUserParams) {
